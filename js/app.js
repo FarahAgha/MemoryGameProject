@@ -172,7 +172,7 @@ let MatchingGame = function() {
 	     
 	    displayRating();
 	    if(elapsedTimeInSeconds === 0)
-			setInterval(displayClock, 1000);
+			myClock = setInterval(displayClock, 1000);
 	};
 	/*
 		 * This method checks if the cards match based on class name.
@@ -237,9 +237,26 @@ let MatchingGame = function() {
 		let displayWinnerScreen = function(){
 			let victoryScreen = window.document.getElementById("winner-screen");
 			victoryScreen.style.display = "block";
-			let victoryTemplate = `<h1 class="winnerHeader"> Congratulations! You Won! </h1> <div class="winnerMessage">With ${numOfMoves} moves and ${starRating} stars Woohoo! </div> <button class="playAgainButton" onClick="cardGm.reset()"> Play again! </button>`;
+			hideCardListScreen();
+			let victoryTemplate = `<h1 class="winnerHeader"> Congratulations! You Won! </h1> 
+				<div class="winnerMessage">With ${numOfMoves} moves and ${starRating} stars Woohoo! </div> 
+				<button class="playAgainButton" onClick="matchingGame.restart()"> Play again! </button>`;
 			victoryScreen.innerHTML = victoryTemplate;	
+			clearInterval(myClock);
+			window.document.getElementById("time").innerText = ("00:00:00");
 		};
+
+		let hideCardListScreen = function(){
+			let cardListScreen  = window.document.getElementById("cardList");
+			cardListScreen.style.display = "none";
+
+		}
+
+		let displayCardListScreen = function(){
+			let cardListScreen  = window.document.getElementById("cardList");
+			cardListScreen.style.display = "flex";
+
+		}
 		
 		this.hideWinnerScreen = function(){
 			let victoryScreen = window.document.getElementById("winner-screen");
@@ -314,6 +331,7 @@ let MatchingGame = function() {
 			arrayOfCards = new Array(new Array(), new Array(), new Array(), new Array());
 			startGame();
 			self.hideWinnerScreen();
+			displayCardListScreen();
 		};
 
 		let startGame = function() {
@@ -328,7 +346,7 @@ let MatchingGame = function() {
 			displayMoves();
 			displayRating();	
 			var restartButton = window.document.getElementById("restart-button");
-			restartButton.addEventListener("click", restart(), false);
+			restartButton.addEventListener("click", self.restart, false);
 		};
 
 		startGame();
