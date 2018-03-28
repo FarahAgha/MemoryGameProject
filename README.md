@@ -1,4 +1,7 @@
-# MemoryGameProject
+Clone the Git Repository https://github.com/FarahAgha/MemoryGameProject
+
+open index.html in the browser
+
 This isn’t just any memory game! It’s a shnazzy, well-designed, feature-packed memory game! and Its is going to test and improve the power of your memory.
 
 So let me start with telling you all the features and how to play

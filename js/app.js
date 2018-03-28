@@ -1,6 +1,4 @@
-/*
-* https://github.com/jchaplin2/fend-project-memory-game./blob/master/index.html
-*/
+
 
 //Class used to represent a card
 let Card = function(cssClass, x, y) {
@@ -51,6 +49,9 @@ let MatchingGame = function() {
 		//game rating, declines based on the number of moves.
 		let starRating = 3;
 
+		// timmer display 
+		//let formattedTime = "00:00:00";
+
 		//overlay that disables clicks
 		let overlay = window.document.getElementById("overlay");
 
@@ -82,7 +83,8 @@ let MatchingGame = function() {
 	 * A list that holds all of the cards
 	 */
 
-	let arrayOfCards = new Array(new Array(), new Array(), new Array(), new Array());
+	let arrayOfCards = [[], [], [], []];
+	
 
 	/*
 	 * This method initializes array of card objects represented on the screen.
@@ -238,8 +240,10 @@ let MatchingGame = function() {
 			let victoryScreen = window.document.getElementById("winner-screen");
 			victoryScreen.style.display = "block";
 			hideCardListScreen();
-			let victoryTemplate = `<h1 class="winnerHeader"> Congratulations! You Won! </h1> 
-				<div class="winnerMessage">With ${numOfMoves} moves and ${starRating} stars Woohoo! </div> 
+			let victoryTemplate = `<h1 class="winnerHeader"> 
+						Congratulations! You Won! 					
+						<div class="winnerMessage">With ${numOfMoves} moves and ${starRating} stars Woohoo! </div> 
+					</h1> 
 				<button class="playAgainButton" onClick="matchingGame.restart()"> Play again! </button>`;
 			victoryScreen.innerHTML = victoryTemplate;	
 			clearInterval(myClock);
@@ -307,8 +311,10 @@ let MatchingGame = function() {
 		  let hours = Math.floor(elapsedTimeInSeconds / 3600 );
 		  if(hours < 10)
 			hours = "0" + hours;
+
+		  formattedTime = hours+" : "+minutes+" : "+seconds;
 		  
-		  window.document.getElementById("time").innerText = (hours+" : "+minutes+" : "+seconds);
+		  window.document.getElementById("time").innerText = formattedTime;
 		};
 
 		this.restart = function(){
@@ -328,8 +334,9 @@ let MatchingGame = function() {
 				"fa fa-bicycle",
 				"fa fa-bomb"
 			];
-			arrayOfCards = new Array(new Array(), new Array(), new Array(), new Array());
+			arrayOfCards = [[],[],[],[]];
 			startGame();
+			window.document.getElementById("time").innerText = "00:00:00";
 			self.hideWinnerScreen();
 			displayCardListScreen();
 		};
