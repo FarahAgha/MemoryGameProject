@@ -242,7 +242,7 @@ let MatchingGame = function() {
 			hideCardListScreen();
 			let victoryTemplate = `<h1 class="winnerHeader"> 
 						Congratulations! You Won! 					
-						<div class="winnerMessage">With ${numOfMoves} moves and ${starRating} stars Woohoo! </div> 
+						<div class="winnerMessage">With ${numOfMoves} moves and ${elapsedTimeInSeconds} seconds With ${starRating} stars Woohoo! </div> 
 					</h1> 
 				<button class="playAgainButton" onClick="matchingGame.restart()"> Play again! </button>`;
 			victoryScreen.innerHTML = victoryTemplate;	
